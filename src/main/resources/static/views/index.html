@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Employee Application</title>
+<script type="text/javascript" src="/js/angular/angular.min.js"></script>
+
+<script type="text/javascript" src="/js/angular/angular.resource.js"></script>
+
+<script type="text/javascript" src="/js/employee/employeeController.js"></script>
+
+<script type="text/javascript" src="/js/employee/employeeService.js"></script>
+<script type="text/javascript" src="/js/employee/employeeApp.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+
+<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/angular/bootstrap-theme.min.css">
+<link rel="stylesheet" href="/css/app/app.css">
+<script type="text/javascript" src="/js/bootstrap/bootstrap.min.js"></script>
+</head>
+<body ng-app="employeeControllerModule"
+	ng-controller="EmployeeController" ng-init="init()">
+	<div class="panel panel-default">
+		<div class="panel-heading header-background">Details of
+			Employees</div>
+		<div class="panel-body">
+			<form class="col-md-4">
+				<div class="form-group">
+					<label for="employeeId">Employee Id</label> <input type="text"
+						ng-disabled="updateButton" ng-model="employee.id"
+						class="form-control" id="employeeId" placeholder="Employee Id">
+				</div>
+				<div class="form-group">
+					<label for="employeeName">Employee Name</label> <input type="text"
+						ng-model="employee.name" class="form-control" id="employeeName"
+						placeholder="Employee Name">
+				</div>
+				<div class="form-group">
+					<label for="employeeSalary">Salary</label> <input type="text"
+						ng-model="employee.salary" class="form-control"
+						id="employeeSalary" placeholder="Salary">
+				</div>
+				<div class="form-group">
+					<label for="employeeDepartment">Department</label> <input
+						type="text" ng-model="employee.department" class="form-control"
+						id="employeeDepartment" placeholder="Department">
+				</div>
+				<div class="form-group">
+					<label for="joiningDate">Date of Joining</label>&nbsp<input
+						id="joiningDate" name="joiningDate" type="date"
+						ng-model="employee.joiningDate">
+				</div>
+				<div class="form-group">
+					<label> <input type="radio" ng-model="employee.sex"
+						value="Male"> Male
+					</label> <label> <input type="radio" ng-model="employee.sex"
+						ng-model="employee.name" value="Female"> Female
+					</label><br />
+				</div>
+				<div class="form-group">
+					<label>Address<textarea ng-model="employee.address">... </textarea></label>
+				</div>
+				<div class="form-group">
+					<label>Country <select ng-model="employee.country"
+						ng-options="country.countryName for country in countries"></select>
+					</label>
+				</div>
+				<button ng-if="!updateButton" ng-click="saveEmployee()"
+					type="submit" class="btn btn-default">Submit</button>
+				<button ng-if="updateButton" ng-click="updateEmployee()"
+					type="submit" class="btn btn-default">Update</button>
+				<button ng-if="updateButton" ng-click="doClear()" type="submit"
+					class="btn btn-default">Cancel</button>
+
+			</form>
+
+			<div class="table-responsive col-md-6">
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Salary</th>
+						<th>Department</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="employee in employees">
+						<td>{{employee.id}}</td>
+						<td>{{employee.name}}</td>
+						<td>{{employee.salary}}</td>
+						<td>{{employee.department}}</td>
+						<td>
+							<button type="button" class="btn btn-default"
+								ng-click="loadEmployeeData(employee)">
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+							</button>
+							<button type="button" class="btn btn-default"
+								ng-click="deleteEmployee(employee)">
+								<span class="glyphicon glyphicon-remove-circle"
+									aria-hidden="true"></span>
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+.header-background{
+	background: beige !important;
+}
+
+.datepickerdemo md-content {
+            padding-bottom: 200px; 
+         }
+         
+        .datepickerdemo .validation-messages {
+            font-size: 11px;
+            color: darkred;
+            margin: 10px 0 0 25px; 
+         }
